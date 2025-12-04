@@ -71,7 +71,7 @@ const SmartCursor = () => {
                 style={{
                     x: cursorX,
                     y: cursorY,
-                    translateX: 12, // Center dot relative to 32px circle (16 - 2/2 = 15, slightly off center if not careful, let's use fixed offset)
+                    translateX: 12, // Center dot: offset calculation for 2px dot inside 32px circle
                     translateY: 12
                 }}
             />

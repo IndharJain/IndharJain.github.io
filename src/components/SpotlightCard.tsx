@@ -17,10 +17,9 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
             onMouseMove={handleMouseMove}
             className={`spotlight-card relative overflow-hidden rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-8 transition-colors duration-300 ${className}`}
             style={{
-                // @ts-ignore
                 "--mouse-x": `${position.x}px`,
                 "--mouse-y": `${position.y}px`,
-            }}
+            } as React.CSSProperties}
         >
             <div className="relative z-10">{children}</div>
         </div>

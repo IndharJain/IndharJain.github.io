@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode - Clean Tech Palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  /* Slate 50 */
+  --text-primary: #0f172a;
+  /* Slate 900 */
+  --text-secondary: #64748b;
+  /* Slate 500 */
+  --border-color: #e2e8f0;
+  /* Slate 200 */
+  --accent-glow: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  /* Sky Blue Glow */
+  --card-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme='dark'] {
+  /* Dark Mode - Deep Space Palette */
+  --bg-primary: #020617;
+  /* Slate 950 */
+  --bg-secondary: #0f172a;
+  /* Slate 900 */
+  --text-primary: #f8fafc;
+  /* Slate 50 */
+  --text-secondary: #94a3b8;
+  /* Slate 400 */
+  --border-color: #1e293b;
+  /* Slate 800 */
+  --accent-glow: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  --card-bg: #0b1121;
+  /* Slightly lighter than bg-primary */
+  --nav-bg: rgba(2, 6, 23, 0.8);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+  /* Subtle noise texture for visual richness */
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: none;
+  /* Ensure links/buttons also hide cursor */
+}
+
+/* Smooth Scrollbar */
+/* Hide Scrollbar for cleaner aesthetic */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Spotlight Effect */
+.spotlight-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+      var(--accent-glow),
+      transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.pause-on-hover:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* SVG Distortion Filter */
+.liquid-lens {
+  filter: url('#liquidFilter');
+  backdrop-filter: blur(2px);
+  mix-blend-mode: hard-light;
+}
+
+/* Dot Grid Background */
+.dot-grid-bg {
+  background-image: radial-gradient(var(--text-secondary) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* Decoder Text Effect */
+.decoder-text {
+  font-family: 'Space Grotesk', monospace;
+}
